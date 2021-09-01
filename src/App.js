@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./screens/Home";
 
 function App() {
     return (
@@ -7,7 +8,7 @@ function App() {
             <Router>
                 <Switch>
                     <Route exact path="/">
-                        eCADEMY
+                        <Home />
                     </Route>
                 </Switch>
             </Router>  
