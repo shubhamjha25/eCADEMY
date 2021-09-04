@@ -10,8 +10,47 @@ function JoinClass() {
     const [open, setOpen] = useRecoilState(joinDialogAtom);
     const [user, loading, error] = useAuthState(auth);
     const [classId, setClassId] = useState("");
+
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const joinClass = async () => {
+        try {
+            // Does Class Exists ?
+            const classRef = await db.collection("classes").doc(classId).get();
+            if (!classRef.exists) {
+                return alert(`Class doesn't exist, please provide correct ID`);
+            }
+
+            const classData = await classRef.data();
+            
+            // Adding Class to Respective User
+            const userRef = await db.collection("users").where("uid", "==", user.uid);
+            const userData = await (await userRef.get()).docs[0].data();
+            let tempClassrooms = userData.enrolledClassrooms;
+            tempClassrooms.push({
+                creatorName: classData.creatorName,
+                creatorPhoto: classData.creatorPhoto,
+                id: classId,
+                name: classData.name,
+            });
+            await (
+                await userRef.get()
+            ).docs[0].ref.update({
+                enrolledClassrooms: tempClassrooms,
+            });
+
+            // Alert for Success
+            alert(`Enrolled in ${classData.name} successfully!`);
+            handleClose();
+        }
+
+        catch (err) {
+            // Log Error Message
+            console.error(err);
+            alert(err.message);
+        }
     };
 
     return (
@@ -40,7 +79,7 @@ function JoinClass() {
                     <Button onClick={handleClose} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={handleClose} color="primary">
+                    <Button onClick={joinClass} color="primary">
                         Join
                     </Button>
                 </DialogActions>
