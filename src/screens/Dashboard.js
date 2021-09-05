@@ -9,12 +9,31 @@ function Dashboard() {
 
     const [user, loading, error] = useAuthState(auth);
     const [classes, setClasses] = useState([]);
-
+    
     const history = useHistory();
+
+    const fetchClasses = async () => {
+        try {
+            await db
+                .collection("users")
+                .where("uid", "==", user.uid)
+                .onSnapshot((snapshot) => {
+                setClasses(snapshot?.docs[0]?.data()?.enrolledClassrooms);
+            });
+        } 
+        catch (error) {
+            console.error(error.message);
+        }
+    };
 
     useEffect(() => {
         if (loading) return;
         if (!user) history.replace("/");
+    }, [user, loading]);
+
+    useEffect(() => {
+        if (loading) return;
+        fetchClasses();
     }, [user, loading]);
 
     return (
