@@ -2,6 +2,7 @@ import React from "react";
 import { IconButton } from "@material-ui/core";
 import { AssignmentIndOutlined, FolderOpenOutlined } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
+import "./ClassCard.css";
 
 function ClassCard({ name, creatorName, creatorPhoto, id, style }) {
     const history = useHistory();
