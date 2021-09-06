@@ -1,6 +1,7 @@
 import React from "react";
 import { Menu, MoreVert } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
+import "./Announcement.css";
 
 function Announcement({ image, name, date, content, authorId }) {
     return (
