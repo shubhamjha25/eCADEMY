@@ -4,6 +4,7 @@ import { auth, db } from "../firebase";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import ClassCard from "../components/ClassCard";
+import './Dashboard.css';
 
 function Dashboard() {
 
