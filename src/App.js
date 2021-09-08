@@ -4,6 +4,7 @@ import Home from "./screens/Home";
 import Navbar from './components/Navbar';
 import Dashboard from './screens/Dashboard';
 import Class from './screens/Class';
+import { RecoilRoot } from 'recoil';
 
 function App() {
     return (
@@ -14,12 +15,16 @@ function App() {
                         <Home />
                     </Route>
                     <Route exact path="/dashboard">
-                        <Navbar />
-                        <Dashboard />
+                        <RecoilRoot>
+                            <Navbar />
+                            <Dashboard />
+                        </RecoilRoot>
                     </Route>
                     <Route exact path="/class/:id">
-                        <Navbar />
-                        <Class />
+                        <RecoilRoot>
+                            <Navbar />
+                            <Class />
+                        </RecoilRoot>
                     </Route>
                 </Switch>
             </Router>  
