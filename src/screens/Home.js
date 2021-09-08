@@ -3,6 +3,7 @@ import './Home.css';
 import { signInWithGoogle, auth } from '../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useHistory } from "react-router-dom";
+import Logo from '../logo.PNG';
 
 function Home() {
 
@@ -21,7 +22,7 @@ function Home() {
             <div className="home">
                 <div className="home-container">
                     <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/5/59/Google_Classroom_Logo.png"
+                        src={Logo}
                         alt="Google Classroom Image"
                         className="home-image"
                     />

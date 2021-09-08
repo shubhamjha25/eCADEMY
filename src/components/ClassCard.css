@@ -32,8 +32,8 @@
 }
 
 .classCard__creatorName {
-    position: absolute;
-    bottom: 12px;
+    position: relative;
+    left: 5px;
     font-size: 15px;
 }
 

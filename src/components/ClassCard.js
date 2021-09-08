@@ -15,10 +15,13 @@ function ClassCard({ name, creatorName, creatorPhoto, id, style }) {
         <div className="classCard" style={style} onClick={goToClass}>
             <div className="classCard__upper">
                 <div className="classCard__className">{name}</div>
-                <div className="classCard__creatorName">{creatorName}</div>
+                
                 <img src={creatorPhoto} className="classCard__creatorPhoto" />
             </div>
-            <div className="classCard__middle"></div>
+            <div className="classCard__middle">
+                 
+                <div className="classCard__creatorName"><span style={{fontSize: "18px"}}>Course Creator : </span><br /><strong>{creatorName}</strong></div>
+            </div>
             <div className="classCard__lower">
                 <IconButton>
                     <FolderOpenOutlined />
